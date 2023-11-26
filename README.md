@@ -8,7 +8,7 @@ En este proyecto utilizamos el editor de código *Visual Studio Code* y los leng
 <ol>
   <li>Menú de navegación</li>
   <li>Logo e input de busqueda</li>
-  <li>Menu de footer</li>
+  <li>Menú de footer</li>
 </ol>
 
 ### Vista Previa
