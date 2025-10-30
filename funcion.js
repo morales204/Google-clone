@@ -1,7 +1,9 @@
-export function saludar(nombre) {
-    console.log(`Hola ${nombre}`);
+function saludar(nombre) {
+    return(`Hola ${nombre}`);
 }
 
-export function despedirse(nombre) {
-    console.log(`Adiós ${nombre}`);
+function despedirse(nombre) {
+    return(`Adiós ${nombre}`);
 }
+
+module.exports = { saludar, despedirse };
