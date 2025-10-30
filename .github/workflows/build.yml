@@ -1,4 +1,4 @@
-name: Sonar Cloud
+name: Build
 on:
   push:
     branches:
@@ -6,34 +6,32 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
-  build:
-    name: Build and Test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        run: npm test
   sonarqube:
-    needs: build
     name: SonarQube
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-          extraProperties: |
-            sonar.javascript.lcov.reportPaths=coverage/lcov.info
+      
+      #  Instalar Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      # Instalar dependencias
+      - name: Install dependencies
+        run: npm install
+
+      # Ejecuta pruebas y genera cobertura con Jest
+      - name: Run tests with coverage
+        run: npm test -- --coverage
+        
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
