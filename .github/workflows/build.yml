@@ -1,4 +1,4 @@
-name: Build
+name: Sonar Cloud
 on:
   push:
     branches:
@@ -6,6 +6,23 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
   sonarqube:
     name: SonarQube
     runs-on: ubuntu-latest
