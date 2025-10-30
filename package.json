@@ -20,5 +20,12 @@
   "homepage": "https://github.com/morales204/Google-clone#readme",
   "devDependencies": {
     "jest": "^30.2.0"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "funcion.js",
+      "funciones.js"
+    ]
   }
 }
