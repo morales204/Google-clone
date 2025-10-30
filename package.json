@@ -5,7 +5,7 @@
   "main": "funcion.js",
   "type": "module",
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest --coverage --coverageReporters=lcov"
   },
   "repository": {
     "type": "git",
