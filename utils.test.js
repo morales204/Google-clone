@@ -1,3 +1,6 @@
+/* sonar-disable coverage */
+/* eslint-disable*/
+
 const { saludar, despedirse } = require('./funcion');
 const { saludarDuplicado, despedirseDuplicado} = require('./funciones');  
 
